@@ -1,0 +1,14 @@
+*****Daily Status Report - Suren*****
+Home Work 		: 3 Completed, 2 Not Started
+Daily Questions		: Answered
+Daily Answers		: Read all
+Topic Owned			: Variables
+Topic Preparation	: In Progress. 20% completed
+Session Attended	: Nil
+
+1. Convert String value to Int - String txt = "1234"
+2. What is the difference between declaring a variable and defining a variable
+3. How many types of modifiers are there in Java? Explain in Detail
+4. Choose the country dropdownvalue in irctc - select the country that starts with "G" - First matching country
+5. 
+6. 
