@@ -2,11 +2,12 @@ package wrappers;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.OutputType;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -48,12 +49,18 @@ public class GenericWrappers implements Wrappers {
 	}
 
 	public void enterByName(String nameValue, String data) {
-		// TODO Auto-generated method stub
+		driver.findElementByName(nameValue).clear();
+		driver.findElementByName(nameValue).sendKeys(data);
+		takeSnap();
+		System.out.println("The text field "+nameValue+" is entered with data: "+data);
 
 	}
 
 	public void enterByXpath(String xpathValue, String data) {
-		// TODO Auto-generated method stub
+		driver.findElementByName(xpathValue).clear();
+		driver.findElementByName(xpathValue).sendKeys(data);
+		takeSnap();
+		System.out.println("The text field "+xpathValue+" is entered with data: "+data);
 
 	}
 
@@ -66,22 +73,42 @@ public class GenericWrappers implements Wrappers {
 	}
 
 	public void verifyTextById(String id, String text) {
-		// TODO Auto-generated method stub
-
+		String textValueById = driver.findElementById(id).getText();
+		takeSnap();
+		if(textValueById.equalsIgnoreCase(text)){
+			System.out.println("The text "+text+" matches searched by id:" +id);
+		}
+		else{
+			System.out.println("The text "+text+" does not match searched by id:" +id);
+		}
 	}
 
 	public void verifyTextByXpath(String xpath, String text) {
-		// TODO Auto-generated method stub
-
+		String textValueByxpath = driver.findElementById(xpath).getText();
+		takeSnap();
+		if(textValueByxpath.equalsIgnoreCase(text)){
+			System.out.println("The text "+text+" matches searched by xpath:" +xpath);
+		}
+		else{
+			System.out.println("The text "+text+" does not match searched by xpath:" +xpath);
+		}
 	}
 
 	public void verifyTextContainsByXpath(String xpath, String text) {
-		// TODO Auto-generated method stub
-
+		String textValueByxpath = driver.findElementById(xpath).getText();
+		takeSnap();
+		if(textValueByxpath.contains(text)){
+			System.out.println("The text "+text+" is found - searched by xpath:" +xpath);
+		}
+		else{
+			System.out.println("The text "+text+" is not found - searched by xpath:" +xpath);
+		}
 	}
 
 	public void clickById(String id) {
-		// TODO Auto-generated method stub
+		driver.findElementByClassName(id).click();
+		takeSnap();
+		System.out.println("The button "+id+" is clicked");
 
 	}
 
@@ -92,7 +119,9 @@ public class GenericWrappers implements Wrappers {
 	}
 
 	public void clickByName(String name) {
-		// TODO Auto-generated method stub
+		driver.findElementByClassName(name).click();
+		takeSnap();
+		System.out.println("The button "+name+" is clicked");
 
 	}
 
@@ -104,28 +133,38 @@ public class GenericWrappers implements Wrappers {
 	}
 
 	public void clickByLinkNoSnap(String name) {
-		// TODO Auto-generated method stub
+		driver.findElementByLinkText(name).click();
+		//takeSnap();
+		System.out.println("Clicked on the " + name + "succesfully");
 
 	}
 
 	public void clickByXpath(String xpathVal) {
-		// TODO Auto-generated method stub
+		driver.findElementByLinkText(xpathVal).click();
+		takeSnap();
+		System.out.println("Clicked on the " + xpathVal + "succesfully");
 
 	}
 
 	public void clickByXpathNoSnap(String xpathVal) {
-		// TODO Auto-generated method stub
+		driver.findElementByLinkText(xpathVal).click();
+		//takeSnap();
+		System.out.println("Clicked on the " + xpathVal + "succesfully");
 
 	}
 
 	public String getTextById(String idVal) {
-		// TODO Auto-generated method stub
-		return null;
+		String textById = driver.findElementById(idVal).getText();
+		takeSnap();
+		System.out.println("Get Text by using id "+idVal+" completed succesfully" );
+		return textById;
 	}
 
 	public String getTextByXpath(String xpathVal) {
-		// TODO Auto-generated method stub
-		return null;
+		String textByxpath = driver.findElementById(xpathVal).getText();
+		takeSnap();
+		System.out.println("Get Text by using xpath "+xpathVal+" completed succesfully" );
+		return textByxpath;
 	}
 
 	public void selectVisibileTextById(String id, String value) {
@@ -138,33 +177,55 @@ public class GenericWrappers implements Wrappers {
 	}
 
 	public void selectIndexById(String id, int value) {
-		// TODO Auto-generated method stub
+		WebElement dropDown = driver.findElementById(id);
+		Select dDown = new Select(dropDown);
+		dDown.selectByIndex(value);
+		takeSnap();
+		System.out.println("The dropdown " + value + " is selected using id: " + id);
 
 	}
 
 	public void switchToParentWindow() {
-		// TODO Auto-generated method stub
-
+		Set<String> allWindow = driver.getWindowHandles();
+		System.out.println("Number of Windows: "+ allWindow.size());		
+		System.out.println("Title of Current (Parent) Window: " + driver.getTitle());	
+		int i=1;
+		for (String eachWindow : allWindow) {			
+			driver.switchTo().window(eachWindow);
+			if(i==1){
+				break;
+			}
+			i++;			
+		}		
+		takeSnap();
+		System.out.println("Title of Parent/First Window: " + driver.getTitle());
 	}
 
 	public void switchToLastWindow() {
-		// TODO Auto-generated method stub
-
+		Set<String> allWindow = driver.getWindowHandles();		
+		System.out.println("Number of Windows: "+ allWindow.size());		
+		System.out.println("Title of Current (Parent) Window: " + driver.getTitle());		
+		for (String eachWindow : allWindow) {			
+			driver.switchTo().window(eachWindow);
+		}		
+		takeSnap();
+		System.out.println("Title of Last Window: " + driver.getTitle());
 	}
 
 	public void acceptAlert() {
-		// TODO Auto-generated method stub
+		driver.switchTo().alert().accept();
 
 	}
 
 	public void dismissAlert() {
-		// TODO Auto-generated method stub
+		driver.switchTo().alert().dismiss();
 
 	}
 
 	public String getAlertText() {
-		// TODO Auto-generated method stub
-		return null;
+		Alert handleAlert = driver.switchTo().alert();
+		String alertText = handleAlert.getText();
+		return alertText;
 	}
 
 	public void takeSnap() {
