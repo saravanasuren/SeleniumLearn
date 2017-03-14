@@ -57,8 +57,8 @@ public class GenericWrappers implements Wrappers {
 	}
 
 	public void enterByXpath(String xpathValue, String data) {
-		driver.findElementByName(xpathValue).clear();
-		driver.findElementByName(xpathValue).sendKeys(data);
+		driver.findElementByXPath(xpathValue).clear();
+		driver.findElementByXPath(xpathValue).sendKeys(data);
 		takeSnap();
 		System.out.println("The text field "+xpathValue+" is entered with data: "+data);
 
@@ -82,9 +82,20 @@ public class GenericWrappers implements Wrappers {
 			System.out.println("The text "+text+" does not match searched by id:" +id);
 		}
 	}
+	
+	public void verifyTextByLink(String name, String text) {
+		String textValueByName = driver.findElementById(name).getText();
+		takeSnap();
+		if(textValueByName.equalsIgnoreCase(text)){
+			System.out.println("The text "+text+" matches searched by id:" +name);
+		}
+		else{
+			System.out.println("The text "+text+" does not match searched by id:" +name);
+		}
+	}
 
 	public void verifyTextByXpath(String xpath, String text) {
-		String textValueByxpath = driver.findElementById(xpath).getText();
+		String textValueByxpath = driver.findElementByXPath(xpath).getText();
 		takeSnap();
 		if(textValueByxpath.equalsIgnoreCase(text)){
 			System.out.println("The text "+text+" matches searched by xpath:" +xpath);
@@ -95,7 +106,7 @@ public class GenericWrappers implements Wrappers {
 	}
 
 	public void verifyTextContainsByXpath(String xpath, String text) {
-		String textValueByxpath = driver.findElementById(xpath).getText();
+		String textValueByxpath = driver.findElementByXPath(xpath).getText();
 		takeSnap();
 		if(textValueByxpath.contains(text)){
 			System.out.println("The text "+text+" is found - searched by xpath:" +xpath);
@@ -128,42 +139,42 @@ public class GenericWrappers implements Wrappers {
 	public void clickByLink(String name) {
 		driver.findElementByLinkText(name).click();
 		takeSnap();
-		System.out.println("Clicked on the " + name + "succesfully");
+		System.out.println("Clicked on the " + name + " Successfully");
 
 	}
 
 	public void clickByLinkNoSnap(String name) {
 		driver.findElementByLinkText(name).click();
 		//takeSnap();
-		System.out.println("Clicked on the " + name + "succesfully");
+		System.out.println("Clicked on the " + name + " Successfully");
 
 	}
 
 	public void clickByXpath(String xpathVal) {
-		driver.findElementByLinkText(xpathVal).click();
+		driver.findElementByXPath(xpathVal).click();
 		takeSnap();
-		System.out.println("Clicked on the " + xpathVal + "succesfully");
+		System.out.println("Clicked on the " + xpathVal + " Successfully");
 
 	}
 
 	public void clickByXpathNoSnap(String xpathVal) {
-		driver.findElementByLinkText(xpathVal).click();
+		driver.findElementByXPath(xpathVal).click();
 		//takeSnap();
-		System.out.println("Clicked on the " + xpathVal + "succesfully");
+		System.out.println("Clicked on the " + xpathVal + " Successfully");
 
 	}
 
 	public String getTextById(String idVal) {
 		String textById = driver.findElementById(idVal).getText();
 		takeSnap();
-		System.out.println("Get Text by using id "+idVal+" completed succesfully" );
+		System.out.println("Get Text by using id "+idVal+" completed  Successfully" );
 		return textById;
 	}
 
 	public String getTextByXpath(String xpathVal) {
-		String textByxpath = driver.findElementById(xpathVal).getText();
+		String textByxpath = driver.findElementByXPath(xpathVal).getText();
 		takeSnap();
-		System.out.println("Get Text by using xpath "+xpathVal+" completed succesfully" );
+		System.out.println("Get Text by using xpath "+xpathVal+" completed  Successfully" );
 		return textByxpath;
 	}
 
@@ -188,7 +199,7 @@ public class GenericWrappers implements Wrappers {
 	public void switchToParentWindow() {
 		Set<String> allWindow = driver.getWindowHandles();
 		System.out.println("Number of Windows: "+ allWindow.size());		
-		System.out.println("Title of Current (Parent) Window: " + driver.getTitle());	
+		//System.out.println("Title of Current (Parent) Window: " + driver.getTitle());	
 		int i=1;
 		for (String eachWindow : allWindow) {			
 			driver.switchTo().window(eachWindow);
@@ -199,13 +210,16 @@ public class GenericWrappers implements Wrappers {
 		}		
 		takeSnap();
 		System.out.println("Title of Parent/First Window: " + driver.getTitle());
+		//Or this can be written by just getting the handle of First Window and saving in a string variable
+		//Then call the string variable when we need to switch to the First Window
 	}
 
 	public void switchToLastWindow() {
 		Set<String> allWindow = driver.getWindowHandles();		
 		System.out.println("Number of Windows: "+ allWindow.size());		
-		System.out.println("Title of Current (Parent) Window: " + driver.getTitle());		
-		for (String eachWindow : allWindow) {			
+		System.out.println("Title of Current (Parent) Window: " + driver.getTitle());	
+		for (String eachWindow : allWindow) {		
+			//System.out.println("Inside Loop - Title of Current Window: " + driver.getTitle());
 			driver.switchTo().window(eachWindow);
 		}		
 		takeSnap();
@@ -214,12 +228,10 @@ public class GenericWrappers implements Wrappers {
 
 	public void acceptAlert() {
 		driver.switchTo().alert().accept();
-
 	}
 
 	public void dismissAlert() {
 		driver.switchTo().alert().dismiss();
-
 	}
 
 	public String getAlertText() {
@@ -242,13 +254,13 @@ public class GenericWrappers implements Wrappers {
 
 	public void closeBrowser() {
 		driver.close();
-		System.out.println("The Browser is closed succesfully");
+		System.out.println("The Browser is closed  Successfully");
 
 	}
 	
 	public void closeAllBrowsers() {
 		driver.quit();
-		System.out.println("All Browsers are closed succesfully");
+		System.out.println("All Browsers are closed  Successfully");
 
 	}
 
