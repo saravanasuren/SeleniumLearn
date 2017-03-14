@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import wrappers.GenericWrappers;
 
-public class CreateLead extends GenericWrappers {
+public class CreateLeadUsingWrappers extends GenericWrappers {
 
 	@Test
 	public void creteLead(){
