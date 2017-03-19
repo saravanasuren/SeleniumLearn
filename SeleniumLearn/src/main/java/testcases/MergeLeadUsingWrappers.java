@@ -26,10 +26,9 @@ public class MergeLeadUsingWrappers extends GenericWrappers{
 		clickByXpath("(//img[@alt='Lookup'])[1]");
 		//Switch to New Window
 		switchToLastWindow();
-		//Enter the Lead ID
-		enterByXpath("//label[contains(text(),'Lead ID:')]/following::input", "13303");
-		//Click Find button
-		clickByXpath("//button[contains(text(),'Find Leads')]");
+		Thread.sleep(3000);
+		//Select the first lead that gets displayed
+		clickByXpath("(//div[@class='x-grid3-cell-inner x-grid3-col-partyId']/a)[1]");
 		Thread.sleep(3000);
 		//Select the First Link
 		clickByXpathNoSnap("(//div[@class='x-grid3-cell-inner x-grid3-col-partyId'])[1]/a");
@@ -39,11 +38,9 @@ public class MergeLeadUsingWrappers extends GenericWrappers{
 		clickByXpath("(//img[@alt='Lookup'])[2]");
 		//Switch to New Window
 		switchToLastWindow();
-		//Enter the Lead ID
-		enterByXpath("//label[contains(text(),'Lead ID:')]/following::input", "13302");
-		//Click Find button
-		clickByXpath("//button[contains(text(),'Find Leads')]");
-		Thread.sleep(3000);
+		
+		//Select the first lead that gets displayed
+		clickByXpath("(//div[@class='x-grid3-cell-inner x-grid3-col-partyId']/a)[2]");
 		//Select the First Link
 		clickByXpathNoSnap("(//div[@class='x-grid3-cell-inner x-grid3-col-partyId'])[1]/a");
 		//Switch to Parent window

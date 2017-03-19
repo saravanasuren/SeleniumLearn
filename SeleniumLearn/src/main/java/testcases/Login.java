@@ -8,14 +8,15 @@ public class Login extends GenericWrappers {
 
 	@Test
 	public void login(){
-		
-		invokeApp("firefox", "http://leaftaps.com");
+		invokeApp("chrome", "http://leaftaps.com");
+		//Enter User Name
 		enterById("username", "DemoSalesManager");
+		//Enter Password
 		enterById("password", "crmsfa");
+		//Click Login Button
 		clickByClassName("decorativeSubmit");
-		clickByClassName("decorativeSubmit");
-		System.out.println("LOGIN: TEST COMPLETED SUCCESSFULLY");
-		
+		//Click CRM/SFA Link
+		clickByLink("CRM/SFA");			
 	}
 	
 }
