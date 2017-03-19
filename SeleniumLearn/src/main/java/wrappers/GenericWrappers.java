@@ -7,7 +7,12 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.NoSuchWindowException;
+import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -20,223 +25,587 @@ public class GenericWrappers implements Wrappers {
 	int i=1;
 
 	public void invokeApp(String browser, String url) {
-
-		if(browser.equalsIgnoreCase("chrome")){		
-			System.setProperty("webdriver.chrome.driver",
-					"./drivers/chromedriver.exe");
-			driver = new ChromeDriver();
+		try {
+			if(browser.equalsIgnoreCase("chrome")){		
+				System.setProperty("webdriver.chrome.driver",
+						"./drivers/chromedriver.exe");
+				driver = new ChromeDriver();
+			}
+			else if(browser.equalsIgnoreCase("firefox")){		
+				System.setProperty("webdriver.gecko.driver",
+						"./drivers/geckodriver.exe");
+				driver = new FirefoxDriver();
+			}
+			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			driver.manage().window().maximize();
+			driver.get(url);
+		} catch (NoSuchWindowException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (WebDriverException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} finally{
+			takeSnap();
 		}
-		else if(browser.equalsIgnoreCase("firefox")){		
-			System.setProperty("webdriver.gecko.driver",
-					"./drivers/geckodriver.exe");
-			driver = new FirefoxDriver();
-		}
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.manage().window().maximize();
-		driver.get(url);
-		takeSnap();
 		System.out.println("The Browser "+browser+" is Launched" );
-
-
 	}
 
 	public void enterById(String idValue, String data) {
-		driver.findElementById(idValue).clear();
-		driver.findElementById(idValue).sendKeys(data);
-		takeSnap();
+		try {
+			driver.findElementById(idValue).clear();
+			driver.findElementById(idValue).sendKeys(data);
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (NotFoundException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (WebDriverException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} finally{
+			takeSnap();
+		}
 		System.out.println("The text field "+idValue+" is entered with data :"+data);
 
 	}
 
 	public void enterByName(String nameValue, String data) {
-		driver.findElementByName(nameValue).clear();
-		driver.findElementByName(nameValue).sendKeys(data);
-		takeSnap();
+		try {
+			driver.findElementByName(nameValue).clear();
+			driver.findElementByName(nameValue).sendKeys(data);
+		}  catch (NoSuchElementException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (NotFoundException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (WebDriverException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} finally{
+			takeSnap();
+		}
 		System.out.println("The text field "+nameValue+" is entered with data: "+data);
 
 	}
 
 	public void enterByXpath(String xpathValue, String data) {
-		driver.findElementByXPath(xpathValue).clear();
-		driver.findElementByXPath(xpathValue).sendKeys(data);
-		takeSnap();
+		try {
+			driver.findElementByXPath(xpathValue).clear();
+			driver.findElementByXPath(xpathValue).sendKeys(data);
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (NotFoundException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (WebDriverException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} finally{
+			takeSnap();
+		}
 		System.out.println("The text field "+xpathValue+" is entered with data: "+data);
 
 	}
 
 	public boolean verifyTitle(String title) {
 		boolean bReturn = false;
-		if(driver.getTitle().equals(title)){
-			bReturn = true;
+		try {
+			if(driver.getTitle().equals(title)){
+				bReturn = true;
+			}
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+		} catch (NotFoundException e) {
+			e.printStackTrace();
+		} catch (WebDriverException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			takeSnap();
 		}
 		return bReturn;
 	}
 
 	public void verifyTextById(String id, String text) {
-		String textValueById = driver.findElementById(id).getText();
-		takeSnap();
-		if(textValueById.equalsIgnoreCase(text)){
-			System.out.println("The text "+text+" matches searched by id:" +id);
-		}
-		else{
-			System.out.println("The text "+text+" does not match searched by id:" +id);
+		try {
+			String textValueById = driver.findElementById(id).getText();
+			if(textValueById.equalsIgnoreCase(text)){
+				System.out.println("The text "+text+" matches searched by id:" +id);
+			}
+			else{
+				System.out.println("The text "+text+" does not match searched by id:" +id);
+			}
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+		} catch (NotFoundException e) {
+			e.printStackTrace();
+		} catch (WebDriverException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			takeSnap();
 		}
 	}
-	
+
 	public void verifyTextByLink(String name, String text) {
-		String textValueByName = driver.findElementById(name).getText();
-		takeSnap();
-		if(textValueByName.equalsIgnoreCase(text)){
-			System.out.println("The text "+text+" matches searched by id:" +name);
-		}
-		else{
-			System.out.println("The text "+text+" does not match searched by id:" +name);
+		try {
+			String textValueByName = driver.findElementById(name).getText();
+			if(textValueByName.equalsIgnoreCase(text)){
+				System.out.println("The text "+text+" matches searched by id:" +name);
+			}
+			else{
+				System.out.println("The text "+text+" does not match searched by id:" +name);
+			}
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+		} catch (NotFoundException e) {
+			e.printStackTrace();
+		} catch (WebDriverException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			takeSnap();
 		}
 	}
 
 	public void verifyTextByXpath(String xpath, String text) {
-		String textValueByxpath = driver.findElementByXPath(xpath).getText();
-		takeSnap();
-		if(textValueByxpath.equalsIgnoreCase(text)){
-			System.out.println("The text "+text+" matches searched by xpath:" +xpath);
-		}
-		else{
-			System.out.println("The text "+text+" does not match searched by xpath:" +xpath);
+		try {
+			String textValueByxpath = driver.findElementByXPath(xpath).getText();
+			if(textValueByxpath.equalsIgnoreCase(text)){
+				System.out.println("The text "+text+" matches searched by xpath:" +xpath);
+			}
+			else{
+				System.out.println("The text "+text+" does not match searched by xpath:" +xpath);
+			}
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+		} catch (NotFoundException e) {
+			e.printStackTrace();
+		} catch (WebDriverException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			takeSnap();
 		}
 	}
 
 	public void verifyTextContainsByXpath(String xpath, String text) {
-		String textValueByxpath = driver.findElementByXPath(xpath).getText();
-		takeSnap();
-		if(textValueByxpath.contains(text)){
-			System.out.println("The text "+text+" is found - searched by xpath:" +xpath);
-		}
-		else{
-			System.out.println("The text "+text+" is not found - searched by xpath:" +xpath);
+		try {
+			String textValueByxpath = driver.findElementByXPath(xpath).getText();
+			if(textValueByxpath.contains(text)){
+				System.out.println("The text "+text+" is found - searched by xpath:" +xpath);
+			}
+			else{
+				System.out.println("The text "+text+" is not found - searched by xpath:" +xpath);
+			}
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+		} catch (NotFoundException e) {
+			e.printStackTrace();
+		} catch (WebDriverException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			takeSnap();
 		}
 	}
 
 	public void clickById(String id) {
-		driver.findElementByClassName(id).click();
-		takeSnap();
+		try {
+			driver.findElementByClassName(id).click();
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (NotFoundException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (WebDriverException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} finally{
+			takeSnap();
+		}
 		System.out.println("The button "+id+" is clicked");
 
 	}
 
 	public void clickByClassName(String classVal) {
-		driver.findElementByClassName(classVal).click();
-		takeSnap();
+		try {
+			driver.findElementByClassName(classVal).click();
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (NotFoundException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (WebDriverException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} finally{
+			takeSnap();
+		}
 		System.out.println("The button "+classVal+" is clicked");
 	}
 
 	public void clickByName(String name) {
-		driver.findElementByClassName(name).click();
-		takeSnap();
+		try {
+			driver.findElementByClassName(name).click();
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (NotFoundException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (WebDriverException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} finally{
+			takeSnap();
+		}
 		System.out.println("The button "+name+" is clicked");
 
 	}
 
 	public void clickByLink(String name) {
-		driver.findElementByLinkText(name).click();
-		takeSnap();
+		try {
+			driver.findElementByLinkText(name).click();
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (NotFoundException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (WebDriverException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} finally{
+			takeSnap();
+		}
 		System.out.println("Clicked on the " + name + " Successfully");
 
 	}
 
 	public void clickByLinkNoSnap(String name) {
-		driver.findElementByLinkText(name).click();
+		try {
+			driver.findElementByLinkText(name).click();
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (NotFoundException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (WebDriverException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} 
 		//takeSnap();
 		System.out.println("Clicked on the " + name + " Successfully");
 
 	}
 
 	public void clickByXpath(String xpathVal) {
-		driver.findElementByXPath(xpathVal).click();
-		takeSnap();
+		try {
+			driver.findElementByXPath(xpathVal).click();
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (NotFoundException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (WebDriverException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} finally{
+			takeSnap();
+		}
 		System.out.println("Clicked on the " + xpathVal + " Successfully");
 
 	}
 
 	public void clickByXpathNoSnap(String xpathVal) {
-		driver.findElementByXPath(xpathVal).click();
+		try {
+			driver.findElementByXPath(xpathVal).click();
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (NotFoundException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (WebDriverException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} 
 		//takeSnap();
 		System.out.println("Clicked on the " + xpathVal + " Successfully");
 
 	}
 
 	public String getTextById(String idVal) {
-		String textById = driver.findElementById(idVal).getText();
-		takeSnap();
+		String textById;
+		try {
+			textById = driver.findElementById(idVal).getText();
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (NotFoundException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (WebDriverException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} finally{
+			takeSnap();
+		}
 		System.out.println("Get Text by using id "+idVal+" completed  Successfully" );
 		return textById;
 	}
 
 	public String getTextByXpath(String xpathVal) {
-		String textByxpath = driver.findElementByXPath(xpathVal).getText();
-		takeSnap();
+		String textByxpath;
+		try {
+			textByxpath = driver.findElementByXPath(xpathVal).getText();
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (NotFoundException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (WebDriverException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} finally{
+			takeSnap();
+		}
 		System.out.println("Get Text by using xpath "+xpathVal+" completed  Successfully" );
 		return textByxpath;
 	}
 
 	public void selectVisibileTextById(String id, String value) {
-		WebElement dropDown = driver.findElementById(id);
-		Select dDown = new Select(dropDown);
-		dDown.selectByVisibleText(value);
-		takeSnap();
+		try {
+			WebElement dropDown = driver.findElementById(id);
+			Select dDown = new Select(dropDown);
+			dDown.selectByVisibleText(value);
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (NotFoundException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (WebDriverException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} finally{
+			takeSnap();
+		}
 		System.out.println("The dropdown " + value + " is selected using id: " + id);
 
 	}
 
 	public void selectIndexById(String id, int value) {
-		WebElement dropDown = driver.findElementById(id);
-		Select dDown = new Select(dropDown);
-		dDown.selectByIndex(value);
-		takeSnap();
+		try {
+			WebElement dropDown = driver.findElementById(id);
+			Select dDown = new Select(dropDown);
+			dDown.selectByIndex(value);
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (NotFoundException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (WebDriverException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} finally{
+			takeSnap();
+		}
 		System.out.println("The dropdown " + value + " is selected using id: " + id);
 
 	}
 
 	public void switchToParentWindow() {
-		Set<String> allWindow = driver.getWindowHandles();
-		System.out.println("Number of Windows: "+ allWindow.size());		
-		//System.out.println("Title of Current (Parent) Window: " + driver.getTitle());	
-		int i=1;
-		for (String eachWindow : allWindow) {			
-			driver.switchTo().window(eachWindow);
-			if(i==1){
-				break;
+		try {
+			Set<String> allWindow = driver.getWindowHandles();
+			System.out.println("Number of Windows: "+ allWindow.size());		
+			//System.out.println("Title of Current (Parent) Window: " + driver.getTitle());	
+			int i=1;
+			for (String eachWindow : allWindow) {			
+				driver.switchTo().window(eachWindow);
+				if(i==1){
+					break;
+				}
+				i++;			
 			}
-			i++;			
+		} catch (NoSuchWindowException e) {
+
+			e.printStackTrace();
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (NotFoundException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (WebDriverException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} finally{
+			takeSnap();
 		}		
-		takeSnap();
 		System.out.println("Title of Parent/First Window: " + driver.getTitle());
 		//Or this can be written by just getting the handle of First Window and saving in a string variable
 		//Then call the string variable when we need to switch to the First Window
 	}
 
 	public void switchToLastWindow() {
-		Set<String> allWindow = driver.getWindowHandles();		
-		System.out.println("Number of Windows: "+ allWindow.size());		
-		System.out.println("Title of Current (Parent) Window: " + driver.getTitle());	
-		for (String eachWindow : allWindow) {		
-			//System.out.println("Inside Loop - Title of Current Window: " + driver.getTitle());
-			driver.switchTo().window(eachWindow);
+		try {
+			Set<String> allWindow = driver.getWindowHandles();		
+			System.out.println("Number of Windows: "+ allWindow.size());		
+			System.out.println("Title of Current (Parent) Window: " + driver.getTitle());	
+			for (String eachWindow : allWindow) {		
+				System.out.println("Inside Loop - Title of Current Window: " + driver.getTitle());
+				driver.switchTo().window(eachWindow);
+			}
+		} catch (NoSuchWindowException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (NotFoundException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (WebDriverException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} finally{
+			takeSnap();
 		}		
-		takeSnap();
 		System.out.println("Title of Last Window: " + driver.getTitle());
 	}
 
 	public void acceptAlert() {
-		driver.switchTo().alert().accept();
+		try {
+			driver.switchTo().alert().accept();
+		} catch (NoAlertPresentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (NotFoundException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (WebDriverException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} 	
 	}
 
 	public void dismissAlert() {
-		driver.switchTo().alert().dismiss();
+		try {
+			driver.switchTo().alert().dismiss();
+		} catch (NoAlertPresentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (NotFoundException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (WebDriverException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} 	
 	}
 
 	public String getAlertText() {
-		Alert handleAlert = driver.switchTo().alert();
-		String alertText = handleAlert.getText();
+		String alertText = "null";
+		try {
+			Alert handleAlert = driver.switchTo().alert();
+			alertText = handleAlert.getText();
+		} catch (NoAlertPresentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (NotFoundException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (WebDriverException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} 	
+
 		return alertText;
 	}
 
@@ -253,14 +622,24 @@ public class GenericWrappers implements Wrappers {
 	}
 
 	public void closeBrowser() {
-		driver.close();
+		try {
+			driver.close();
+		} catch (WebDriverException e) {
+			e.printStackTrace();
+			System.out.println("Exception Occured in Closing Browser");
+		}
 		System.out.println("The Browser is closed  Successfully");
 
 	}
-	
+
 	public void closeAllBrowsers() {
-		driver.quit();
-		System.out.println("All Browsers are closed  Successfully");
+		try {
+			driver.quit();
+		} catch (WebDriverException e) {
+			e.printStackTrace();
+			System.out.println("Exception Occured in Closing All Browsers");
+		}
+		System.out.println("The Browser is closed  Successfully");
 
 	}
 
