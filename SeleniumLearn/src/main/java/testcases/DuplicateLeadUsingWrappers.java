@@ -28,7 +28,7 @@ public class DuplicateLeadUsingWrappers extends GenericWrappers{
 		//Click on Find Leads
 		clickByXpath("//button[contains(text(),'Find Leads')]");
 		//Capture the Name of first Result
-		String nameOfFirstResult = getTextByXpath("(//div[@class='x-grid3-cell-inner x-grid3-col-partyId'])[1]/a");
+		String nameOfFirstResult = getTextByXpath("(//div[@class='x-grid3-cell-inner x-grid3-col-firstName'])[1]/a");
 		System.out.println(nameOfFirstResult);
 		//Click on First Result
 		clickByXpath("(//div[@class='x-grid3-cell-inner x-grid3-col-partyId'])[1]/a");
@@ -46,6 +46,7 @@ public class DuplicateLeadUsingWrappers extends GenericWrappers{
 		else{
 			System.out.println("Name of First Result " + nameOfFirstResult+ " Duplicate Lead Name "+DupFirstName+ " does not Match");
 		}
+		System.out.println("DUPLICATE LEAD USING WRAPPERS: TEST COMPLETED SUCCESSFULLY");
 		closeAllBrowsers();
 	}
 

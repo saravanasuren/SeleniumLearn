@@ -27,7 +27,7 @@ public class MergeLeadUsingWrappers extends GenericWrappers{
 		//Switch to New Window
 		switchToLastWindow();
 		//Enter the Lead ID
-		enterByXpath("//label[contains(text(),'Lead ID:')]/following::input", "22609");
+		enterByXpath("//label[contains(text(),'Lead ID:')]/following::input", "13303");
 		//Click Find button
 		clickByXpath("//button[contains(text(),'Find Leads')]");
 		Thread.sleep(3000);
@@ -40,7 +40,7 @@ public class MergeLeadUsingWrappers extends GenericWrappers{
 		//Switch to New Window
 		switchToLastWindow();
 		//Enter the Lead ID
-		enterByXpath("//label[contains(text(),'Lead ID:')]/following::input", "22615");
+		enterByXpath("//label[contains(text(),'Lead ID:')]/following::input", "13302");
 		//Click Find button
 		clickByXpath("//button[contains(text(),'Find Leads')]");
 		Thread.sleep(3000);
@@ -67,7 +67,7 @@ public class MergeLeadUsingWrappers extends GenericWrappers{
 			System.out.println("No Records to display ***NOT FOUND***");
 		}
 		closeAllBrowsers();
-		System.out.println("TEST COMPLETED SUCCESSFULLY");
+		System.out.println("MERGE LEAD USING WRAPPERS: TEST COMPLETED SUCCESSFULLY");
 		
 	}
 

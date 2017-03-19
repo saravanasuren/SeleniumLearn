@@ -14,6 +14,7 @@ public class Login extends GenericWrappers {
 		enterById("password", "crmsfa");
 		clickByClassName("decorativeSubmit");
 		clickByClassName("decorativeSubmit");
+		System.out.println("LOGIN: TEST COMPLETED SUCCESSFULLY");
 		
 	}
 	

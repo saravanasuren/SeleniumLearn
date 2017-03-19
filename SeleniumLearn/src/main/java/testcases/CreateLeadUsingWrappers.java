@@ -49,6 +49,7 @@ public class CreateLeadUsingWrappers extends GenericWrappers {
 		selectVisibileTextById("createLeadForm_currencyUomId", "INR - Indian Rupee");
 		//Click Create Lead Button
 		clickByClassName("smallSubmit");
+		System.out.println("CREATE LEAD USING WRAPPERS: TEST COMPLETED SUCCESSFULLY");
 		//Close Browser
 		closeBrowser();	
 		
