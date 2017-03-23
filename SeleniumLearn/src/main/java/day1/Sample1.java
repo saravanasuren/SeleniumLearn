@@ -21,7 +21,7 @@ public class Sample1 {
 		driver.findElementById("createLeadForm_companyName").sendKeys("My Company");
 		driver.findElementById("createLeadForm_firstName").sendKeys("My First Name");
 		driver.findElementById("createLeadForm_lastName").sendKeys("My Last Name");
-		driver.findElementById("createLeadForm_parentPartyId").sendKeys("Parent Account"); //Not Working
+		driver.findElementById("createLeadForm_parentPartyId").sendKeys("17865"); 
 		driver.findElementById("createLeadForm_dataSourceId").sendKeys("Conference");
 		driver.findElementById("createLeadForm_marketingCampaignId").sendKeys("Automobile");
 		driver.findElementById("createLeadForm_firstNameLocal").sendKeys("Local First Name");

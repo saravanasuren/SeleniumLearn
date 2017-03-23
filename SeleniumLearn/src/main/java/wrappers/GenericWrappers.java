@@ -310,15 +310,19 @@ public class GenericWrappers implements Wrappers {
 		} catch (NoSuchElementException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - clickByName: No Such Element - element could not be found Occured");
+			throw new RuntimeException();
 		} catch (NotFoundException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - clickByName: Element Not Found Exception Occured");
+			throw new RuntimeException();
 		} catch (WebDriverException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - clickByName: Web Driver Exception Occured");
+			throw new RuntimeException();
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - clickByName: Other Exception Occured");
+			throw new RuntimeException();
 		} finally{
 			takeSnap();
 		}
@@ -331,15 +335,19 @@ public class GenericWrappers implements Wrappers {
 		} catch (NoSuchElementException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - clickByLink: No Such Element - element could not be found Occured");
+			throw new RuntimeException();
 		} catch (NotFoundException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - clickByLink: Element Not Found Exception Occured");
+			throw new RuntimeException();
 		} catch (WebDriverException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - clickByLink: Web Driver Exception Occured");
+			throw new RuntimeException();
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - clickByLink: Other Exception Occured");
+			throw new RuntimeException();
 		} finally{
 			takeSnap();
 		}
@@ -352,15 +360,19 @@ public class GenericWrappers implements Wrappers {
 		} catch (NoSuchElementException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - clickByLinkNoSnap: No Such Element - element could not be found Occured");
+			throw new RuntimeException();
 		} catch (NotFoundException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - clickByLinkNoSnap: Element Not Found Exception Occured");
+			throw new RuntimeException();
 		} catch (WebDriverException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - clickByLinkNoSnap: Web Driver Exception Occured");
+			throw new RuntimeException();
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - clickByLinkNoSnap: Other Exception Occured");
+			throw new RuntimeException();
 		}
 		//takeSnap();
 	}
@@ -372,15 +384,19 @@ public class GenericWrappers implements Wrappers {
 		} catch (NoSuchElementException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - clickByXpath: No Such Element - element could not be found Occured");
+			throw new RuntimeException();
 		} catch (NotFoundException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - clickByXpath: Element Not Found Exception Occured");
+			throw new RuntimeException();
 		} catch (WebDriverException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - clickByXpath: Web Driver Exception Occured");
+			throw new RuntimeException();
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - clickByXpath: Other Exception Occured");
+			throw new RuntimeException();
 		} finally{
 			takeSnap();
 		}
@@ -393,15 +409,19 @@ public class GenericWrappers implements Wrappers {
 		} catch (NoSuchElementException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - clickByXpathNoSnap: No Such Element - element could not be found Occured");
+			throw new RuntimeException();
 		} catch (NotFoundException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - clickByXpathNoSnap: Element Not Found Exception Occured");
+			throw new RuntimeException();
 		} catch (WebDriverException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - clickByXpathNoSnap: Web Driver Exception Occured");
+			throw new RuntimeException();
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - clickByXpathNoSnap: Other Exception Occured");
+			throw new RuntimeException();
 		}
 		//takeSnap();
 	}
@@ -414,15 +434,19 @@ public class GenericWrappers implements Wrappers {
 		} catch (NoSuchElementException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - getTextById: No Such Element - element could not be found Occured");
+			throw new RuntimeException();
 		} catch (NotFoundException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - getTextById: Element Not Found Exception Occured");
+			throw new RuntimeException();
 		} catch (WebDriverException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - getTextById: Web Driver Exception Occured");
+			throw new RuntimeException();
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - getTextById: Other Exception Occured");
+			throw new RuntimeException();
 		} finally{
 			takeSnap();
 		}
@@ -437,15 +461,19 @@ public class GenericWrappers implements Wrappers {
 		} catch (NoSuchElementException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - getTextByXpath: No Such Element - element could not be found Occured");
+			throw new RuntimeException();
 		} catch (NotFoundException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - getTextByXpath: Element Not Found Exception Occured");
+			throw new RuntimeException();
 		} catch (WebDriverException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - getTextByXpath: Web Driver Exception Occured");
+			throw new RuntimeException();
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - getTextByXpath: Other Exception Occured");
+			throw new RuntimeException();
 		} finally{
 			takeSnap();
 		}
@@ -461,15 +489,19 @@ public class GenericWrappers implements Wrappers {
 		} catch (NoSuchElementException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - selectVisibileTextById: No Such Element - element could not be found Occured");
+			throw new RuntimeException();
 		} catch (NotFoundException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - selectVisibileTextById: Element Not Found Exception Occured");
+			throw new RuntimeException();
 		} catch (WebDriverException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - selectVisibileTextById: Web Driver Exception Occured");
+			throw new RuntimeException();
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - selectVisibileTextById: Other Exception Occured");
+			throw new RuntimeException();
 		} finally{
 			takeSnap();
 		}
@@ -484,15 +516,19 @@ public class GenericWrappers implements Wrappers {
 		} catch (NoSuchElementException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - selectIndexById: No Such Element - element could not be found Occured");
+			throw new RuntimeException();
 		} catch (NotFoundException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - selectIndexById: Element Not Found Exception Occured");
+			throw new RuntimeException();
 		} catch (WebDriverException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - selectIndexById: Web Driver Exception Occured");
+			throw new RuntimeException();
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - selectIndexById: Other Exception Occured");
+			throw new RuntimeException();
 		} finally{
 			takeSnap();
 		}
@@ -519,18 +555,23 @@ public class GenericWrappers implements Wrappers {
 		} catch (NoSuchWindowException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - switchToParentWindow: target to be switched doesn’t exist");
+			throw new RuntimeException();
 		} catch (NoSuchElementException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - switchToParentWindow: No Such Element - element could not be found Occured");
+			throw new RuntimeException();
 		} catch (NotFoundException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - switchToParentWindow: Element Not Found Exception Occured");
+			throw new RuntimeException();
 		} catch (WebDriverException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - switchToParentWindow: Web Driver Exception Occured");
+			throw new RuntimeException();
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - switchToParentWindow: Other Exception Occured");
+			throw new RuntimeException();
 		} finally{
 			takeSnap();
 		}
@@ -542,25 +583,30 @@ public class GenericWrappers implements Wrappers {
 			System.out.println("Number of Windows: "+ allWindow.size());		
 			System.out.println("Title of Current (Parent) Window: " + driver.getTitle());	
 			for (String eachWindow : allWindow) {		
-				System.out.println("Inside Loop - Title of Current Window: " + driver.getTitle());
+				//System.out.println("Inside Loop - Title of Current Window: " + driver.getTitle());
 				driver.switchTo().window(eachWindow);
 			}
 			System.out.println("Title of Last Window: " + driver.getTitle());
 		} catch (NoSuchWindowException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - switchToLastWindow: target to be switched doesn’t exist");
+			throw new RuntimeException();
 		} catch (NoSuchElementException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - switchToLastWindow: No Such Element - element could not be found Occured");
+			throw new RuntimeException();
 		} catch (NotFoundException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - switchToLastWindow: Element Not Found Exception Occured");
+			throw new RuntimeException();
 		} catch (WebDriverException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - switchToLastWindow: Web Driver Exception Occured");
+			throw new RuntimeException();
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - switchToLastWindow: Other Exception Occured");
+			throw new RuntimeException();
 		} finally{
 			takeSnap();
 		}	
@@ -573,18 +619,23 @@ public class GenericWrappers implements Wrappers {
 		} catch (NoAlertPresentException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - acceptAlert: Alert Pop-Up not found");
+			throw new RuntimeException();
 		} catch (NoSuchElementException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - acceptAlert: No Such Element - element could not be found Occured");
+			throw new RuntimeException();
 		} catch (NotFoundException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - acceptAlert: Element Not Found Exception Occured");
+			throw new RuntimeException();
 		} catch (WebDriverException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - acceptAlert: Web Driver Exception Occured");
+			throw new RuntimeException();
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - acceptAlert: Other Exception Occured");
+			throw new RuntimeException();
 		} 	
 	}
 
@@ -595,18 +646,23 @@ public class GenericWrappers implements Wrappers {
 		} catch (NoAlertPresentException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - dismissAlert: Alert Pop-Up not found");
+			throw new RuntimeException();
 		} catch (NoSuchElementException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - dismissAlert: No Such Element - element could not be found Occured");
+			throw new RuntimeException();
 		} catch (NotFoundException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - dismissAlert: Element Not Found Exception Occured");
+			throw new RuntimeException();
 		} catch (WebDriverException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - dismissAlert: Web Driver Exception Occured");
+			throw new RuntimeException();
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - dismissAlert: Other Exception Occured");
+			throw new RuntimeException();
 		} 	
 	}
 
@@ -619,18 +675,23 @@ public class GenericWrappers implements Wrappers {
 		} catch (NoAlertPresentException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - getAlertText: Alert Pop-Up not found");
+			throw new RuntimeException();
 		} catch (NoSuchElementException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - getAlertText: No Such Element - element could not be found Occured");
+			throw new RuntimeException();
 		} catch (NotFoundException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - getAlertText: Element Not Found Exception Occured");
+			throw new RuntimeException();
 		} catch (WebDriverException e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - getAlertText: Web Driver Exception Occured");
+			throw new RuntimeException();
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Generic Wrappers - getAlertText: Other Exception Occured");
+			throw new RuntimeException();
 		} 	
 
 		return alertText;

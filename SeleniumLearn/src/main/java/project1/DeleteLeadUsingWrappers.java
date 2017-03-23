@@ -37,6 +37,7 @@ public class DeleteLeadUsingWrappers extends LeafTapsWrappers{
 		verifyTextByXpath("//div[text()='No records to display']", "No records to display");
 		//Close All Browsers
 		closeAllBrowsers();
+		System.out.println("DELETE LEAD COMPLETED SUCCESFULLY");
 	}
 
 }
