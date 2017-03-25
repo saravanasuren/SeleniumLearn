@@ -16,14 +16,14 @@ public class CreateAccountUsingWrappers extends LeafTapsWrappers {
 		//Click on Create Account Link
 		clickByLink("Create Account");
 		//Set the Account Name in String Variable - TO validate later
-		String AccountName = "Suren Corp4";
+		String AccountName = "Suren Corp6";
 		//Enter the Account Name
 		enterById("accountName", AccountName);
 		//Select Industry Drop down
 		selectVisibileTextByName("industryEnumId", "Manufacturing");
 		//Select Currency Drop Down
 		selectVisibileTextById("currencyUomId", "MUR - Mauritius Rupee");
-		//Select Data Source droip down
+		//Select Data Source drop downs
 		selectVisibileTextById("dataSourceId", "Existing Customer");
 		//Select Marketing Campaign Drop Down
 		selectVisibileTextById("marketingCampaignId", "Automobile");
@@ -39,10 +39,9 @@ public class CreateAccountUsingWrappers extends LeafTapsWrappers {
 		selectVisibileTextById("generalStateProvinceGeoId", "TAMILNADU");
 		//Click Submit button
 		clickByClassName("smallSubmit"); 
-		//The below 3 steps are to capture the account ID from the full account name and ID
 		String TempAccountID = getTextByXpath("//span[text()='Account Name']/following::span[@class='tabletext']");
 		System.out.println("Temp Account ID: "+TempAccountID);
-		String ActualAccountID = TempAccountID.substring((TempAccountID.length()-6), (TempAccountID.length()-1));
+		String ActualAccountID = TempAccountID.substring(TempAccountID.indexOf("(")+1,TempAccountID.indexOf(")"));
 		System.out.println("ACTUAL ACCOUNT ID: "+ActualAccountID);
 		//Click Find Accounts Option
 		clickByLink("Find Accounts");
@@ -55,10 +54,8 @@ public class CreateAccountUsingWrappers extends LeafTapsWrappers {
 		//Verify the Account ID with the resulting row
 		verifyTextByXpath("//div[@class='x-grid3-cell-inner x-grid3-col-partyId']/a", ActualAccountID);
 		//Close Browser
-		closeAllBrowsers();
 		System.out.println("CREATE ACCOUNT COMPLETED SUCCESSFULLY");
-		
-		
+		closeAllBrowsers();
 		
 	}
 

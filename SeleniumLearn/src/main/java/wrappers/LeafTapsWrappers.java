@@ -5,16 +5,29 @@ import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 public class LeafTapsWrappers extends GenericWrappers{
 	
+	@BeforeMethod
 	public void loginLeafTaps(){
+		//Launch URL
 		invokeApp("Chrome", "http://leaftaps.com/control/main");
+		//Enter User ID
 		enterById("username", "DemoSalesManager");
+		//Enter Password
 		enterById("password", "crmsfa");
-		clickByClassName("decorativeSubmit");		
+		//Click On Login
+		clickByClassName("decorativeSubmit");
+		//Click CRM/SFA Link
+		clickByLink("CRM/SFA");	
 	}
 	
+	@AfterMethod
+	public void closeaAllBrowser(){
+		closeAllBrowsers();
+	}
 	public void selectVisibileTextByName(String name, String value) {
 		try {
 			WebElement dropDown = driver.findElementByName(name);

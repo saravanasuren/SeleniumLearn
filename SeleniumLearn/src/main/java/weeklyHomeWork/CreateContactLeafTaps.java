@@ -72,7 +72,7 @@ public class CreateContactLeafTaps {
 		driver.findElementById("createContactForm_generalCity").sendKeys("Chennai");
 		//enter Zipcode
 		driver.findElementById("createContactForm_generalPostalCode").sendKeys("600010");
-		//enter zipcode extn.
+		//enter Zeipcode extn.
 		driver.findElementById("createContactForm_generalPostalCodeExt").sendKeys("4401");
 		//Country DropDown
 		WebElement cntryDropDown = driver.findElementById("createContactForm_generalCountryGeoId");
