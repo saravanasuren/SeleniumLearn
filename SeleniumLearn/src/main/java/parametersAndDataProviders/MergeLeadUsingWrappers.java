@@ -1,4 +1,4 @@
-package testNg;
+package parametersAndDataProviders;
 
 import org.testng.annotations.Test;
 
@@ -6,7 +6,7 @@ import wrappers.LeafTapsWrappers;
 
 public class MergeLeadUsingWrappers extends LeafTapsWrappers{
 
-	@Test(enabled=false)
+	@Test(groups={"regression"})
 	public void MergeLead() throws InterruptedException {
 		//Click on Accounts Link
 		clickByLink("Accounts");

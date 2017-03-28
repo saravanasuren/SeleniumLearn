@@ -1,11 +1,11 @@
-package testNg;
+package groups;
 
 import org.testng.annotations.Test;
 
 import wrappers.LeafTapsWrappers;
 
 public class DeleteLeadUsingWrappers extends LeafTapsWrappers{
-	@Test(dependsOnMethods={"testNg.CreateLeadUsingWrappers.creteLead"},timeOut=7000)
+	@Test(groups={"sanity"},dependsOnGroups={"smoke"})
 	public void deleteLeads(){
 		//Click on Leads Link
 		clickByLink("Leads");
@@ -14,9 +14,9 @@ public class DeleteLeadUsingWrappers extends LeafTapsWrappers{
 		//Click on Phone Tab
 		clickByXpath("//span[text()='Phone']");
 		//Enter Phone Number
-		enterByXpath("//input[@name='phoneNumber']", "9941586323");
+		//enterByXpath("//input[@name='phoneNumber']", "9944121392");
 		//Click on Find Leads button
-		clickByXpath("//button[text()='Find Leads']");
+		//clickByXpath("//button[text()='Find Leads']");
 		//Get the Lead ID in a variable
 		String LeadId = getTextByXpath("(//div[@class='x-grid3-cell-inner x-grid3-col-partyId']/a)[1]");
 		//Click on first resulting Lead

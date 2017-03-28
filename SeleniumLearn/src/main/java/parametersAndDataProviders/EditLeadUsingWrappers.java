@@ -1,11 +1,11 @@
-package testNg;
+package parametersAndDataProviders;
 
 import org.testng.annotations.Test;
 
 import wrappers.LeafTapsWrappers;
 
 public class EditLeadUsingWrappers extends LeafTapsWrappers{
-	@Test(dependsOnMethods={"testNg.CreateLeadUsingWrappers.creteLead"})
+	@Test(groups={"sanity"}, dependsOnGroups={"smoke"})
 	public void EditLeads(){
 		//Click on Leads Link
 		clickByLink("Leads");

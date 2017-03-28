@@ -1,11 +1,12 @@
-package testNg;
+package parametersAndDataProviders;
 
 import org.testng.annotations.Test;
 
 import wrappers.LeafTapsWrappers;
 
 public class DuplicateLeadUsingWrappers extends LeafTapsWrappers{
-	@Test
+	
+	@Test(groups={"regression"})
 	public void DuplicateLead(){
 		//Click on Leads Tab
 		clickByLink("Leads");	
@@ -36,9 +37,7 @@ public class DuplicateLeadUsingWrappers extends LeafTapsWrappers{
 		else{
 			System.out.println("Name of First Result " + nameOfFirstResult+ " Duplicate Lead Name "+DupFirstName+ " does not Match");
 		}
-		
 		System.out.println("DUPLICATE LEAD USING WRAPPERS: TEST COMPLETED SUCCESSFULLY");
-
 	}
 
 }

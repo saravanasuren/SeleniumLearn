@@ -7,17 +7,19 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 
-public class LeafTapsWrappers extends GenericWrappers{
-
-	@BeforeMethod(groups="common")
-	public void loginLeafTaps(){
+public class LeafTapsWrappers2 extends GenericWrappers{
+	
+	@Parameters({"browser","url","username","password"})
+	@BeforeMethod
+	public void loginLeafTaps(String browser, String url,String uName,String pwd){
 		//Launch URL
-		invokeApp("chrome", "http://leaftaps.com/control/main");
+		invokeApp(browser, url);
 		//Enter User ID
-		enterById("username", "DemoSalesManager");
+		enterById("username", uName);
 		//Enter Password
-		enterById("password", "crmsfa");
+		enterById("password", pwd);
 		//Click On Login
 		clickByClassName("decorativeSubmit");
 		//Click CRM/SFA Link

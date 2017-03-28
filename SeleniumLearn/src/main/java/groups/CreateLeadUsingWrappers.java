@@ -1,4 +1,4 @@
-package testNg;
+package groups;
 
 import org.testng.annotations.Test;
 
@@ -6,7 +6,7 @@ import wrappers.LeafTapsWrappers;
 
 public class CreateLeadUsingWrappers extends LeafTapsWrappers {
 
-	@Test(invocationCount=2)
+	@Test(groups={"smoke"})
 	public void creteLead(){
 		//Click on Create Lead
 		clickByLink("Create Lead");
