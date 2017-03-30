@@ -7,7 +7,7 @@ import wrappers.LeafTapsWrappers2;
 
 public class CreateLeadUsingDP extends LeafTapsWrappers2 {
 
-	@Test (dataProvider="datasource")
+	@Test (dataProvider="datasource" , groups={"smoke"})
 	public void creteLead(String companyName, String fName, String lName, String dsource, String mCampaign,
 			String dept, String aRevenue, String currency, String phone, String email){
 		//Click on Create Lead
@@ -41,8 +41,8 @@ public class CreateLeadUsingDP extends LeafTapsWrappers2 {
 	//Data Provider - This is created to pass the data to the test case using DP matrix.
 	@DataProvider(name="datasource")
 	public Object[][] fetchData(){
-		Object[][] obj = new Object[3][10];
-		obj[0][0] = "Suren Corp8";
+		Object[][] obj = new Object[2][10];
+		obj[0][0] = "Suren Corp";
 		obj[0][1] = "Suren";
 		obj[0][2] = "S";
 		obj[0][3] = "Conference";
@@ -52,7 +52,7 @@ public class CreateLeadUsingDP extends LeafTapsWrappers2 {
 		obj[0][7] = "INR - Indian Rupee";
 		obj[0][8] = "9944121392";
 		obj[0][9] = "saravanasuren@gmail.com";
-		obj[1][0] = "Suren Corp9";
+		obj[1][0] = "Suren Corp";
 		obj[1][1] = "Suren";
 		obj[1][2] = "S";
 		obj[1][3] = "Conference";
@@ -62,16 +62,6 @@ public class CreateLeadUsingDP extends LeafTapsWrappers2 {
 		obj[1][7] = "INR - Indian Rupee";
 		obj[1][8] = "9944121392";
 		obj[1][9] = "saravanasuren@gmail.com";
-		obj[2][0] = "Suren Corp10";
-		obj[2][1] = "Suren";
-		obj[2][2] = "S";
-		obj[2][3] = "Conference";
-		obj[2][4] = "Automobile";
-		obj[2][5] = "My Dept";	
-		obj[2][6] = "120000";
-		obj[2][7] = "INR - Indian Rupee";
-		obj[2][8] = "9944121392";
-		obj[2][9] = "saravanasuren@gmail.com";
 		return obj;
 	}
 

@@ -26,7 +26,7 @@ public class LeafTapsWrappers2 extends GenericWrappers{
 		clickByLink("CRM/SFA");	
 	}
 	
-	@AfterMethod(groups="common")
+	@AfterMethod
 	public void closeAllBrowser(){
 		closeAllBrowsers();
 	}
